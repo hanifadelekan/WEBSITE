@@ -24,6 +24,7 @@ body {
 }
 
 
-#header-two {
-    font-size: 20px; /* Change this value to your desired size for h2 with id "header-two" */
+.header-two {
+    font-size: 15px; /* Change this value to your desired size for h1 with class "header-one" */
+    text-align:center;
 }
