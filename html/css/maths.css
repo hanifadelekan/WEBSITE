@@ -1,0 +1,36 @@
+body#background {
+    margin: 0;
+    overflow: hidden;
+    background-image: url('img/IMG_3212.jpg');
+    background-size: cover;
+    background-position: top 100%;
+    background-repeat: no-repeat;
+    
+}
+body {
+    font-family: 'Arial', sans-serif;
+    color:darkred;
+}  
+body {
+    font-family: 'Arial', sans-serif;
+    color: darkred;
+}
+
+.header-one {
+    font-size: 65px; /* Change this value to your desired size for h1 with class "header-one" */
+    
+}
+
+@keyframes slide {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -200% 0; /* adjust the percentage based on the number of images */
+    }
+}
+/* Container holding the image and the text */
+.header-two {
+    font-size: 15px; /* Change this value to your desired size for h1 with class "header-one" */
+    text-align:center;
+}
