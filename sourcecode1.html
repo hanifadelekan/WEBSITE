@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="h.adel">
+    <meta name="description" content="ongoing projects">
+    <title>Projects</title>
+    <link rel="icon" href="html5.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/sourcecode.css" type="text/css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        /* Style for the container div */
+        .container {
+            padding: 20px;
+        }
+
+        .image-container {
+            position: absolute;
+            top: 10%;
+            left: 92%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Style for the text overlay */
+        .image-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body id="background">
+
+    <div class="container">
+
+        <h1 class="header-one"><a href="projects.html">PROJECTS*</a></h1>
+
+        <div class="image-container">
+            <!-- Image -->
+            <img src="img/image (80).png" alt="Your Image" width="185" length="200">
+
+            <!-- Text overlay -->
+            <div class="image-text">
+                <h3><a href="index.html">HOMEPAGE</a></h3>
+            </div>
+        </div>
+
+        <hr>
+
+        <h1>SOURCE CODE 1</h1>
+        <pre>
+            <code>
+                import backtesting
+                import pandas as pd
+                import yfinance as yf
+
+                from backtesting import Backtest
+                from backtesting import Strategy
+                from backtesting.lib import crossover
+
+                SOLANA = yf.download("SOL-GBP", start="2022-11-01", end="2023-11-01", interval='1h')
+
+                def SMA(values, n):
+                    return pd.Series(values).rolling(n).mean()
+
+                class SmaCross(Strategy):
+                    n1 = 40
+                    n2 = 80
+
+                    def init(self):
+                        self.sma1 = self.I(SMA, self.data.Close, self.n1)
+                        self.sma2 = self.I(SMA, self.data.Close, self.n2)
+
+                    def next(self):
+                        if crossover(self.sma1, self.sma2):
+                            self.position.close()
+                            self.buy()
+
+                        elif crossover(self.sma2, self.sma1):
+                            self.position.close()
+                            self.sell()
+
+                bt = Backtest(SOLANA, SmaCross, cash=10_0, commission=.002)
+
+                stats = bt.run()
+                print(stats)
+
+                stats = bt.optimize(n1=range(5, 60, 5),
+                                    n2=range(10, 80, 5),
+                                    maximize='Equity Final [$]',
+                                    constraint=lambda param: param.n1 < param.n2)
+                print(stats)
+
+                bt.plot()
+            </code>
+        </pre>
+
+        <br>
+
+        <h2 class="header-two"> &lt;&lt;&lt; &copy; Hanif Adelekan &gt;&gt;&gt; </h2>
+
+    </div>
+
+</body>
+
+</html>

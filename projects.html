@@ -50,50 +50,22 @@
         <iframe src="https://replit.com/@hanifadelekan/Python#main.py?embed=true" width="600" height="400" />-->
         <hr>
 
-        <h2>Volatility Based Crypto Coin Trader</h2>  
-        <py-script>
-            # HANIF TRADING
+        <h1>Crypto Coin Trader</h1>
+        <h2>Current Iterations</h2>
+        <ul>
 
-            import pandas as pd
-            import numpy as np
-            import yfinance as yf
-            import backtrader as bt
-            import matplotlib.pyplot as mplot
-            from scipy.optimize import curve_fit
-            
-            # Collect AAPL historical price data
-            aapl = yf.download("BX", start="2023-11-6", end="2023-12-13", interval = '1h')
-            
-            # Print the column names to verify the changes
-            #print(aapl.head())
-            
-            
-            closeprice = aapl[['Adj Close']]
-            openprice = aapl[['Open']]
-            highprice = aapl[['High']]
-            
-            ema = aapl['Adj Close'].ewm(span=3, adjust=False).mean()
-            
-            
-            
-            mplot.plot(aapl.index, closeprice, label='Closing Price')
-            mplot.plot(aapl.index, ema, label='Moving average')
-            mplot.legend()
-            mplot.show()
-            
-            """# Customize the plot
-            mplot.plot(aapl['Adj Close'])
-            mplot.xlabel('Date')
-            mplot.ylabel('Price')
-            mplot.title('AAPL')
-              # Add legend to distinguish between series
-            """
-            
-            
-            
-            
-            
-        </py-script>
+            <li>
+                <p><strong><a href="sourcecode1.html">Initial simple moving average based algorithm</a></strong> - This algorithm is a copy of an online available script based on the backtesting library.</p><p>It works by closing any shortselling positions and purchasing equity when the first moving average increases above the second moving average. The first moving average is calculated with fewer days than the second moving average</p><p>Click the link to view the code and run it in your own environment. Please note that you will need to install the various libraries imported at the top of the script. Enter " pip install 'library name' into your terminal to do this. - (Assuming Python is already installed).</p>
+            </li>
+            <li>
+                <p><strong><a href="sourcecode2.html">Standard deviation moving average based algorithm</a></strong> - This is the first alteration of the original algorithm </p><p>It works by closing any shortselling positions and purchasing equity when the distance between moving averages exceed a multiple of the standard deviation of the close prices.</p><p>Click the link to view the code and run it in your own environment. Please note that you will need to install the various libraries imported at the top of the script. Enter " pip install 'library name' into your terminal to do this. - (Assuming Python is already installed).</p>
+            </li>
+            <li>
+                <p><strong><a href="sourcecode3.html">Standard deviation moving average based algorithm V2</a></strong> - This is the second alteration of the original algorithm </p><p>It works by closing any shortselling positions and purchasing equity when the distance between moving averages exceed a multiple of the standard deviation of the first or second moving averages.</p><p>Click the link to view the code and run it in your own environment. Please note that you will need to install the various libraries imported at the top of the script. Enter " pip install 'library name' into your terminal to do this. - (Assuming Python is already installed).</p>
+            </li>
+
+        </ul>  
+        
         
 
         

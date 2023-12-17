@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="h.adel">
+    <meta name="description" content="ongoing projects">
+    <title>Projects</title>
+    <link rel="icon" href="html5.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/sourcecode.css" type="text/css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        /* Style for the container div */
+        .container {
+            padding: 20px;
+        }
+
+        .image-container {
+            position: absolute;
+            top: 10%;
+            left: 92%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Style for the text overlay */
+        .image-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body id="background">
+
+    <div class="container">
+
+        <h1 class="header-one"><a href="projects.html">PROJECTS*</a></h1>
+
+        <div class="image-container">
+            <!-- Image -->
+            <img src="img/image (80).png" alt="Your Image" width="185" length="200">
+
+            <!-- Text overlay -->
+            <div class="image-text">
+                <h3><a href="index.html">HOMEPAGE</a></h3>
+            </div>
+        </div>
+
+        <hr>
+
+        <h1>SOURCE CODE 3</h1>
+        <pre>
+            <code>
+                # Import necessary libraries
+import backtesting
+import pandas as pd
+import yfinance as yf
+
+# Import necessary modules from backtesting library
+from backtesting import Backtest
+from backtesting import Strategy
+from backtesting.lib import crossover
+
+
+
+# Download historical price data for SOLANA in GBP from Yahoo Finance
+SOLANA = yf.download("SOL-GBP", start="2022-11-01", end="2023-11-01", interval='1d')
+
+# Define a function to calculate the Simple Moving Average (SMA) of a given series
+def SMA(values, n):
+    return pd.Series(values).rolling(n).mean()
+
+# Define a trading strategy class called SmaCross that inherits from backtesting's Strategy class
+class SmaCross(Strategy):
+    n1 = 40  # Define the first SMA period
+    n2 = 80  # Define the second SMA period
+
+    
+
+    # Initialization method to precompute the two moving averages
+    def init(self):
+        self.sma1 = self.I(SMA, self.data.Close, self.n1)
+        self.sma2 = self.I(SMA, self.data.Close, self.n2)
+        current_close = self.data.Close[-1]
+        self.sum_cumulative = 0
+        self.dis = 0
+   
+
+        
+
+       
+        
+    
+
+    # Trading logic for each time step
+    def next(self):
+        
+        # If sma1 crosses above sma2 + n, close any existing short trades and buy the asset
+        if self.sma2[-1] - self.sma1[-1] > self.sma2[-2] - self.sma1[-2] :
+            self.position.close()
+            self.buy()
+        
+        # If sma1 crosses below sma2 - n, close any existing long trades and sell the asset
+        elif self.sma1[-1] - self.sma2[-1] > self.sma1[-2] - self.sma2[-2] :
+            self.position.close()
+            self.sell()
+
+# Create a Backtest instance with the SOLANA price data and the SmaCross strategy
+bt = Backtest(SOLANA, SmaCross, cash=10_0, commission=.002)
+
+# Run the backtest and print the results
+stats = bt.run()
+print(stats)
+
+# Plot the backtest results
+stats = bt.optimize(n1=range(5, 60, 5),
+                    n2=range(10, 80, 5),
+                    maximize='Equity Final [$]',
+                    constraint=lambda param: param.n1 < param.n2)
+print(stats)
+
+bt.plot()
+
+"""# Optimize the strategy by iterating through different values of n1 and n2
+stats = bt.optimize(n1=range(5, 30, 5),
+                    n2=range(10, 70, 5),
+                    maximize='Equity Final [$]',
+                    constraint=lambda param: param.n1 < param.n2)
+
+# Print the optimized results
+print(stats)
+
+# Plot the results of the optimized strategy
+bt.plot()"""
+
+            </code>
+        </pre>
+
+        <br>
+
+        <h2 class="header-two"> &lt;&lt;&lt; &copy; Hanif Adelekan &gt;&gt;&gt; </h2>
+
+    </div>
+
+</body>
+
+</html>

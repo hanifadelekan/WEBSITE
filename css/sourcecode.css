@@ -1,15 +1,16 @@
 body#background {
     margin: 0;
-    background-image: url('img/IMG_3212.jpg');
+    background-color: black;
     background-size: cover;
-    background-position: top 100%;
+    background-position: center;
     background-repeat: no-repeat;
     
 }
 body {
     font-family: 'Arial', sans-serif;
     color:darkred;
-}  
+}
+
 body {
     font-family: 'Arial', sans-serif;
     color: darkred;
@@ -19,6 +20,20 @@ body {
     font-size: 65px; /* Change this value to your desired size for h1 with class "header-one" */
     
 }
+
+#navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+  }
+  
+  #navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
 
 @keyframes slide {
     0% {
