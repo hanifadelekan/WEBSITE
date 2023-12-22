@@ -1,6 +1,7 @@
 body#background {
     margin: 0;
-    background-image: url('img/cardiff.png');
+    #background-image: url('img/cardiff.png');
+    background-colour: black
     background-size: cover;
     background-position: top 50% bottom 50%; /* Corrected syntax */
     background-repeat: no-repeat;
