@@ -1,6 +1,11 @@
 body#background {
     margin: 0;
-    background-color: black;
+    background-image: url('img/cardiff.png');
+    background-size: cover;
+    background-position: top 50% bottom 50%; /* Corrected syntax */
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 1500px;
 }
 
 body {
